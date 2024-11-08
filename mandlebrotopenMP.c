@@ -66,13 +66,13 @@ int main() {
     
     
     
-    for (int k=1; k<=MAX_NUM_THREADS; k++){ // using this loop for changing the num of threads and comparing the execution time, getting the runtime for each number o thread
+    for (int k=1; k<=MAX_NUM_THREADS; k++){ // using this loop for changing the num of threads and comparing the execution time, getting the runtime for each number of thread
       omp_set_num_threads(k);  //setting each time a num of threads from 1 to 6
       int i, j;
       double start_time = omp_get_wtime(); // Start measuring time
       
       #pragma omp parallel for schedule(dynamic, 1) private(c)  // parallizing the outer loop and setting the chunk size to one row and the work to be dynamic
-      	for (i = 0; i < HEIGHT; i++) {  //iterate over the row , Row-wise chuncking, each thread handles a row
+      	for (i = 0; i < HEIGHT; i++) {  //iterate over the row , Row-wise chuncking, each thread handles a row 
           	for (j = 0; j < WIDTH; j++) {  
               		c.real = (j - WIDTH / 2.0) * 4.0 / WIDTH;
               		c.imag = (i - HEIGHT / 2.0) * 4.0 / HEIGHT;
